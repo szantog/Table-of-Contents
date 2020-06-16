@@ -118,7 +118,7 @@ CKEDITOR.plugins.add('contents', {
                     text = '&nbsp;'
                 }
 
-                var id = text.replace(/ /g, "+");
+                var id = text.replace(/[^A-Za-z0-9_\-]+/g, '+');
                 currentHeading.setAttribute('id', id);
 
                 var liNode = CKEDITOR.dom.element.createFromHtml('<li><a href="#' + id + '">' + text + '</a></li>');
