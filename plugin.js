@@ -7,6 +7,14 @@ CKEDITOR.plugins.add('contents', {
         editor.addContentsCss(this.path + 'styles/styles.css');
         CKEDITOR.dialog.add('contents', this.path + 'dialogs/contents.js');
 
+        // Default Config
+        var defaultConfig = {
+            header: '<p class="toc-title">Contents</p>',
+        };
+
+        // Get Config & Lang
+        var config = CKEDITOR.tools.extend(defaultConfig, editor.config.contents || {}, true);
+
         editor.widgets.add('contents', {
             button: 'Insert Table of Contents',
 
@@ -35,8 +43,6 @@ CKEDITOR.plugins.add('contents', {
 
                 buildToc(this.element);
 
-                console.log(this.element.hasClass('float-right'));
-
                 if (this.element.hasClass('float-left'))
                     this.setData('align', 'float-left');
                 if (this.element.hasClass('float-right'))
@@ -59,8 +65,8 @@ CKEDITOR.plugins.add('contents', {
 
         function buildToc(element) {
 
-            //set everything up
-            element.setHtml('<p class="toc-title">Contents</p>');
+            element.setHtml(config.header);
+
             Container = new CKEDITOR.dom.element('ol');
             Container.appendTo(element);
 
@@ -82,7 +88,7 @@ CKEDITOR.plugins.add('contents', {
                     newLevel = parseInt(currentHeading.getName().substr(1, 1));
                 var diff = (newLevel - parentLevel);
 
-                //set the start level incase it is not h1
+                //set the start level in case it is not h1
                 if (i === 0) {
                     diff = 0;
                     parentLevel = newLevel;
@@ -106,10 +112,6 @@ CKEDITOR.plugins.add('contents', {
                     parentLevel = newLevel;
                 }
 
-                //we can add the list item if there is no difference
-
-                //if(text === ''){text = 'empty'}
-
                 if (text == null || text.trim() === '') {
                     text = '&nbsp;'
                 }
@@ -123,7 +125,3 @@ CKEDITOR.plugins.add('contents', {
         }
     }
 });
-
-
-
-
