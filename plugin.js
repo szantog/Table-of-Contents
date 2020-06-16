@@ -10,9 +10,11 @@ CKEDITOR.plugins.add('contents', {
         // Default Config
         var defaultConfig = {
             header: '<p class="toc-title">Contents</p>',
+            //ol or ul
+            listType: 'ol',
         };
 
-        // Get Config & Lang
+        // Get Config
         var config = CKEDITOR.tools.extend(defaultConfig, editor.config.contents || {}, true);
 
         editor.widgets.add('contents', {
@@ -67,7 +69,7 @@ CKEDITOR.plugins.add('contents', {
 
             element.setHtml(config.header);
 
-            Container = new CKEDITOR.dom.element('ol');
+            Container = new CKEDITOR.dom.element(config.listType);
             Container.appendTo(element);
 
             if (element.hasClass('toc_root')) {
@@ -97,7 +99,7 @@ CKEDITOR.plugins.add('contents', {
                 //we need a new ul if the new level has a higher number than its parents number
                 if (diff > 0) {
                     var containerLiNode = Container.getLast();
-                    var ulNode = new CKEDITOR.dom.element('ol');
+                    var ulNode = new CKEDITOR.dom.element(config.listType);
                     ulNode.appendTo(containerLiNode);
                     Container = ulNode;
                     parentLevel = newLevel;
@@ -107,7 +109,7 @@ CKEDITOR.plugins.add('contents', {
                 if (diff < 0) {
                     while (0 !== diff++) {
                         parent = Container.getParent().getParent();
-                        Container = (parent.getName() === 'ol' ? parent : Container);
+                        Container = (parent.getName() === config.listType ? parent : Container);
                     }
                     parentLevel = newLevel;
                 }
@@ -120,6 +122,7 @@ CKEDITOR.plugins.add('contents', {
                 currentHeading.setAttribute('id', id);
 
                 var liNode = CKEDITOR.dom.element.createFromHtml('<li><a href="#' + id + '">' + text + '</a></li>');
+
                 liNode.appendTo(Container);
             }
         }
