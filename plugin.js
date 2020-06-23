@@ -12,6 +12,8 @@ CKEDITOR.plugins.add('contents', {
             header: '<p class="toc-title">Contents</p>',
             //ol or ul
             listType: 'ol',
+            headersSelector: '> h1,> h2,> h3,> h4,> h5,> h6,',
+            nestedHeadersSelector: 'h1,h2,h3,h4,h5,h6,'
         };
 
         // Get Config
@@ -73,9 +75,9 @@ CKEDITOR.plugins.add('contents', {
             Container.appendTo(element);
 
             if (element.hasClass('toc_root')) {
-                findRoot = '> h1,> h2,> h3,> h4,> h5,> h6,';
+                findRoot = config.headersSelector;
             } else {
-                findRoot = 'h1,h2,h3,h4,h5,h6,';
+                findRoot = config.nestedHeadersSelector;
             }
 
             var headings = editor.editable().find(findRoot),
