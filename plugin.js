@@ -9,7 +9,7 @@ CKEDITOR.plugins.add('contents', {
 
         // Default Config
         var defaultConfig = {
-            header: '<p class="toc-title">Contents</p>',
+            header: '<p class="toc-title">Tartalom <span id="close-toc">[Bezár]</span></p>',
             //ol or ul
             listType: 'ol',
             headersSelector: '> h1,> h2,> h3,> h4,> h5,> h6,',
@@ -20,7 +20,7 @@ CKEDITOR.plugins.add('contents', {
         var config = CKEDITOR.tools.extend(defaultConfig, editor.config.contents || {}, true);
 
         editor.widgets.add('contents', {
-            button: 'Insert Table of Contents',
+            button: 'Tartalomjegyzék beszúrása',
 
             template:
                 '<div class="widget-toc"></div>',

@@ -10,7 +10,7 @@
 
 CKEDITOR.dialog.add('contents', function (editor) {
     return {
-        title: 'Edit',
+        title: 'Szerkesztés',
         minWidth: 200,
         minHeight: 100,
         contents: [
@@ -20,7 +20,7 @@ CKEDITOR.dialog.add('contents', function (editor) {
                     {
                         id: 'align',
                         type: 'select',
-                        label: 'Align',
+                        label: 'Igazítás',
                         items: [
                             [editor.lang.common.notSet, ''],
                             [editor.lang.common.alignLeft, 'float-left'],
