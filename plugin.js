@@ -9,7 +9,7 @@ CKEDITOR.plugins.add('contents', {
 
         // Default Config
         var defaultConfig = {
-            header: '<p class="toc-title">Tartalom <span id="close-toc">[Bezár]</span></p>',
+            header: '<p class="toc-title">Tartalomjegyzék bezárása <i class="fas fa-arrow-circle-down"></i></p>',
             //ol or ul
             listType: 'ol',
             headersSelector: '> h1,> h2,> h3,> h4,> h5,> h6,',
